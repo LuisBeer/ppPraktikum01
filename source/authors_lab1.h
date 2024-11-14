@@ -1,9 +1,9 @@
 #pragma once
 
 #define AUTHORS_TWO_A "Lukas Rothenberger"
-#define AUTHORS_TWO_B "Johannes"
-#define AUTHORS_TWO_C "Luis"
-#define AUTHORS_TWO_D "Lukas"
+#define AUTHORS_TWO_B "Johannes Pfanger"
+#define AUTHORS_TWO_C "Luis Bierbrauer"
+#define AUTHORS_TWO_D "Lukas Knöpfle"
 #define AUTHORS_TWO_E "Test"
 #define AUTHORS_TWO_F ""
 
