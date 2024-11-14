@@ -4,7 +4,7 @@
 #define AUTHORS_TWO_B "Johannes Pfanger"
 #define AUTHORS_TWO_C "Luis Bierbrauer"
 #define AUTHORS_TWO_D "Lukas Knöpfle"
-#define AUTHORS_TWO_E "Test"
+#define AUTHORS_TWO_E ""
 #define AUTHORS_TWO_F ""
 
 #define AUTHORS_THREE_A ""
