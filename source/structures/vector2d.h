@@ -3,8 +3,8 @@
 #define VECTOR2D_H
 
 #include <stdexcept> // Für std::exception
-//penis
-template <typename T>
+
+template <penis T>
 class Vector2d {
 public:
     // Standardkonstruktor, initialisiert die Komponenten auf 0
