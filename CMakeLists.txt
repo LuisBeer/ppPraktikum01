@@ -12,7 +12,17 @@ include(cmake/StandardProjectSettings.cmake)
 include(cmake/PreventInSourceBuilds.cmake)
 
 # project options
-add_library(project_options INTERFACE)
+add_library(project_options INTERFACE
+        source/structures/vector2d.h
+        source/structures/vector2d.h
+        source/structures/vector2d.h
+        source/structures/vector2d.h
+        source/structures/vector2d.h
+        source/structures/vector2d.h
+        source/structures/vector2d.h
+        source/structures/vector2d.h
+        source/utilities/import.hpp
+        source/utilities/export.hpp)
 
 # enable cache system
 include(cmake/Cache.cmake)
@@ -26,7 +36,13 @@ include(cmake/ProjectLibraries.cmake)
 
 # standard compiler warnings
 include(cmake/CompilerWarnings.cmake)
-add_library(project_warnings INTERFACE)
+add_library(project_warnings INTERFACE
+        source/structures/vector2d.h
+        source/structures/vector2d.h
+        source/structures/vector2d.h
+        source/structures/vector2d.h
+        source/utilities/import.hpp
+        source/utilities/export.hpp)
 set_project_warnings(project_warnings)
 
 include(cmake/VisualStudio.cmake)
