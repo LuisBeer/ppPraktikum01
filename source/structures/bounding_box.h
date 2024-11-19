@@ -9,7 +9,6 @@
 #include <cstdint>
 
 class BoundingBox{
-
     //Felder definieren
     double x_min;
     double y_min;
