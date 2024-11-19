@@ -5,5 +5,8 @@
 
 #include <cmath>
 
+void calculate_forces(Universe universe) {
+    for(int i = 0; i<num_bodies)
+}
 
 
