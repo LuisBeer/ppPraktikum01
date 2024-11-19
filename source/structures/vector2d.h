@@ -3,7 +3,7 @@
 #define VECTOR2D_H
 
 #include <stdexcept> // Für std::exception
-
+//penis
 template <typename T>
 class Vector2d {
 public:
