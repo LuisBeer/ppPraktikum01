@@ -1,5 +1,5 @@
 #pragma once
-#ifndef VECTOR2D_H
+#ifndef VECTOR2D_H //ifnotdefined bzw if vector2hd not defined (.h sind header-Dateien)
 #define VECTOR2D_H
 
 #include <stdexcept> //braucht man um std::exception zu nutzen
