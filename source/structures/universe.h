@@ -10,12 +10,16 @@
 
 class Universe {
     //Felder definieren
-    std::uint32_t num_bodies;
-    std::uint32_t current_simulation_epoch;
-    double weights;
-    Vector2d<double> forces;
-    Vector2d<double> velocities;
-    Vector2d<double> positions;
+    public: //public damit ich in Simulation auf die Werte zugreifen kann. Oder get und set Methoden schreiben
+        std::uint32_t num_bodies;
+        std::uint32_t current_simulation_epoch;
+        std::vector<double> weights;
+        std::vector<Vector2d<double>> forces;
+        std::vector<Vector2d<double>> velocities;
+        std::vector<Vector2d<double>> positions;
+    // diese Werte müssen in std::vector gespeichert werden, das ist wie nen Array mit dynamischer Länge. Jedes Feld bezieht sich dabei auf einen Himmelskörper.
+    // die Reihenfolge der Himmelskörper muss in jedem Array gleich sein (Weights[1] und Velocities[1] solle beide jeweils die Werte von Himmelskörper 1 enthalten)
+    // Entsprechend Boundingboxes anpassen
 
     BoundingBox get_bounding_box() { //Methode gibt ein Objekt vom Typ Boundingbox zurück und nimmt keine Argumente an
         double x_min = positions[0];
@@ -41,5 +45,7 @@ public: //Standardkonstruktor erzeugt leeres Universum
           forces(),
           velocities(),
           positions() {}
+
+    //Nächste Simulations-Epoche
 };
 #endif
