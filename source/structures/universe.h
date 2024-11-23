@@ -22,10 +22,10 @@ class Universe {
     // Entsprechend Boundingboxes anpassen
 
     BoundingBox get_bounding_box() { //Methode gibt ein Objekt vom Typ Boundingbox zurück und nimmt keine Argumente an
-        double x_min = positions[0];
-        double x_max = positions[0];
-        double y_min = positions[1];
-        double y_max = positions[1];
+        double x_min = positions[0][0];
+        double x_max = positions[0][0];
+        double y_min = positions[0][1];
+        double y_max = positions[0][1];
         // Durchlaufe alle Positionen und finde neue max Werte
         for (const auto& pos : positions) {
             x_min = std::min(x_min, pos[0]);
