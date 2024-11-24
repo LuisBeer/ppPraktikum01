@@ -10,12 +10,14 @@
 
 class Plotter{
 public:
-    Plotter(BoundingBox bb, const std::filesystem::path & arg_output_folder_path, std::uint32_t plot_width_arg, std::uint32_t plot_height_arg): plot_bounding_box(bb), output_folder_path(arg_output_folder_path), plot_width(plot_width_arg), plot_height(plot_height_arg), image(BitmapImage(plot_height_arg, plot_width_arg)), image_serial_number(0){
+    Plotter(BoundingBox bb, const std::filesystem::path & arg_output_folder_path, std::uint32_t plot_width_arg, std::uint32_t plot_height_arg): plot_bounding_box(bb),
+        output_folder_path(arg_output_folder_path), plot_width(plot_width_arg), plot_height(plot_height_arg), image(BitmapImage(plot_height_arg, plot_width_arg)), image_serial_number(0){
         // set default filename prefix
         filename_prefix = "plot";
     }
 
     void add_bodies_to_image(Universe& universe);
+
     void highlight_position(Vector2d<double> position, std::uint8_t red, std::uint8_t green, std::uint8_t blue);
     
     void set_plot_bounding_box(BoundingBox bb){

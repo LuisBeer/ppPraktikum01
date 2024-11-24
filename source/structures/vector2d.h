@@ -1,64 +1,73 @@
 #pragma once
-#ifndef VECTOR2D_H //ifnotdefined bzw if vector2hd not defined (.h sind header-Dateien)
+#ifndef VECTOR2D_H
 #define VECTOR2D_H
 
-#include <stdexcept> //braucht man um std::exception zu nutzen
+#include <cmath>
+#include <stdexcept> // Für std::exception
 
-template <typename T> //Typparameter
+template <typename T>
 class Vector2d {
 public:
-    Vector2d() : x(T{}), y(T{}) {} //Standardkonstruktor
-    Vector2d(T x, T y) : x(x), y(y) {} //Konstruktor zum direkten Setzen der Komponenten
+    // Standardkonstruktor, initialisiert die Komponenten auf 0
+    Vector2d() : x(T{}), y(T{}) {}
 
-    T operator[](size_t index) const { //Erwartet index und gibt T zurück Index-Zugriffsoperator []
-        //Zugriff auf x und y oder Exception
+    // Konstruktor zum direkten Setzen der Komponenten
+    Vector2d(T x, T y) : x(x), y(y) {}
+
+    // Methode zum Setzen der Komponenten
+    void set(T x, T y) {
+        this->x = x;
+        this->y = y;
+    }
+
+    // Zugriff auf die Komponenten mit dem []-Operator
+    T operator[](size_t index) const {
         if (index == 0) {
             return x;
         } else if (index == 1) {
             return y;
         } else {
-            throw std::out_of_range("Index out of range");
+            throw std::out_of_range("Index out of range for Vector2d");
         }
     }
 
-    void set(T x, T y) { //void Methode nimmt Werte für x und y
-        //überschreibt x und y
-        this->x = x;
-        this->y = y;
+    // Operatoren-Implementierungen
+
+    // Addition zweier Vektoren
+    Vector2d operator+(const Vector2d& other) const {
+        return Vector2d(x + other.x, y + other.y);
     }
 
-    //Addition zweier Vektoren
-    Vector2d<T> operator+(const Vector2d<T>& other) const {
-        return Vector2d<T>(x + other.x, y + other.y); //addiert x und y Komponente vom Vektor other zu x und y
+    // Subtraktion zweier Vektoren
+    Vector2d operator-(const Vector2d& other) const {
+        return Vector2d(x - other.x, y - other.y);
     }
 
-    //Subtraktion zweier Vektoren
-    Vector2d<T> operator-(const Vector2d<T>& other) const {
-        return Vector2d<T>(x - other.x, y - other.y); //subtrahiert x und y Komponente vom Vektor other von x und y
+    // Multiplikation mit einem Skalar
+    Vector2d operator*(T scalar) const {
+        return Vector2d(x * scalar, y * scalar);
     }
 
-    //Multiplikation des Vektors mit einem Skalar
-    Vector2d<T> operator*(T multi) const {
-        return Vector2d<T>(x * multi, y * multi); //multipliziert multi mit x und y
-    }
-
-    //Division des Vektors durch einen Skalar
-    Vector2d<T> operator/(T divi) const {
-        if (divi == T{}) {
-            throw std::invalid_argument("Division with zero");
+    // Division durch ein Skalar
+    Vector2d operator/(T scalar) const {
+        if (scalar == T{}) {
+            throw std::invalid_argument("Division by zero");
         }
-        return Vector2d<T>(x / divi, y / divi);
+        return Vector2d(x / scalar, y / scalar);
     }
 
-    //Gleichheitsoperator
-    bool operator==(const Vector2d<T>& other) const {
-        return x == other.x && y == other.y;
+    // Gleichheitsoperator (implizit mit Spaceship-Operator <=>)
+    auto operator<=>(const Vector2d& other) const = default;
+
+    //Vektorbetrag
+    double value() {
+        return sqrt(x * x + y * y);
     }
 
 private:
-    T x;
-    T y;
+    T x; // Komponente 0
+    T y; // Komponente 1
 };
 
-#endif
+#endif // VECTOR2D_H
 
