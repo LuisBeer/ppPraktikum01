@@ -57,7 +57,6 @@ public:
     }
 
     // Gleichheitsoperator
-    //auto operator<=>(const Vector2d& other) const = default;
     bool operator==(const Vector2d& other) const {
         return x == other.x && y == other.y;
     }
