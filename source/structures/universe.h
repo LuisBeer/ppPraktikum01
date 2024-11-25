@@ -5,7 +5,6 @@
 #include <vector>
 #include <cstdint>
 #include "structures/vector2d.h"
-#include "input_generator/input_generator.h"
 #include "bounding_box.h"
 
 class Universe {

@@ -4,6 +4,7 @@
 #include "structures/universe.h"
 #include <cstdint>
 
+
 class InputGenerator{
 public:
     static void create_random_universe(std::uint32_t bodies, Universe& universe);

@@ -10,13 +10,14 @@
 
 void calculate_forces(Universe &universe) {
     for(int i = 0; i<universe.num_bodies; i++) { //gehe ale Körper durch
-        Vector2d<double> f = new Vector2d<auto>();
+        Vector2d<double> f;
 
         for (int j = 0; j<universe.num_bodies; j++) {
             //gehe alle andern körper durch
             if(j==i) continue;                          // der i-te körper ist der aktuell betrachtete, dieser wird ausgelassen, da die eigenabhängigkeit physikalisch keinen sinn ergibt
-            double d = (universe.positions[i]-(universe.positions[j])).value(); //verbindungsvektor muss noch betrag berechnen
-            f = f+gravitational_force(universe.weights[i], universe.weights[j], d);
+            Vector2d<double> connect = universe.positions[j]-(universe.positions[i]);
+            double d = connect.value(); //verbindungsvektor muss noch betrag berechnen
+            f = f + connect / d * gravitational_force(universe.weights[i], universe.weights[j], d); //verbindungsvektor durch Betrag ist verbindungseinheitsvektor mal Kraft ist der Kraft richtungsvektor
         }
         universe.forces[i] = f;
     }
@@ -25,7 +26,7 @@ void calculate_forces(Universe &universe) {
 void calculate_velocities(Universe &universe) {
     calculate_forces(universe);
     for(int i = 0; i<universe.num_bodies; i++) {//gehe ale Körper durch
-        Vector2d<auto> a = calculate_acceleration(universe.forces[i], universe.weights[i]);
+        Vector2d<double> a = calculate_acceleration(universe.forces[i], universe.weights[i]);
         universe.velocities[i] = calculate_velocity(a, universe.velocities[i], epoch_in_seconds);
     }
 }
@@ -33,8 +34,8 @@ void calculate_velocities(Universe &universe) {
 void calculate_positions(Universe &universe) {
     calculate_velocities(universe);
     for(int i = 0; i<universe.num_bodies; i++) {//gehe ale Körper durch
-        Vector2d<auto> ds = universe.velocities[i]*epoch_in_seconds;
-        universe.positions[i] += ds;
+        Vector2d<double> ds = universe.velocities[i]*epoch_in_seconds;
+        universe.positions[i] = universe.positions[i] + ds;
     }
 }
 
