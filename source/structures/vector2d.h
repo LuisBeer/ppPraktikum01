@@ -56,8 +56,11 @@ public:
         return Vector2d(x / scalar, y / scalar);
     }
 
-    // Gleichheitsoperator (implizit mit Spaceship-Operator <=>)
-    auto operator<=>(const Vector2d& other) const = default;
+    // Gleichheitsoperator
+    //auto operator<=>(const Vector2d& other) const = default;
+    bool operator==(const Vector2d& other) const {
+        return x == other.x && y == other.y;
+    }
 
     //Vektorbetrag
     double value() {
