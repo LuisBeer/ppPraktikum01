@@ -50,6 +50,7 @@ class BoundingBox{
                 return BoundingBox(x_min, y_min, x_middle, y_middle);
             case 3: // Quadran unten rechts
                 return BoundingBox(x_middle, y_min, x_max, y_middle);
+            default:  throw std::logic_error("Unexpected quadrant index");
         }
     }
 
