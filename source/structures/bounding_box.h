@@ -10,10 +10,11 @@
 
 class BoundingBox{
     //Felder definieren
-    double x_min;
-    double y_min;
-    double x_max;
-    double y_max;
+    public:
+        double x_min;
+        double y_min;
+        double x_max;
+        double y_max;
 
     //Methoden aus bounding_box.cpp holen (Rückgabe und Name)
     std::string get_string();
