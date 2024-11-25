@@ -87,4 +87,5 @@ void Plotter::highlight_position(Vector2d<double> position, std::uint8_t red, st
         }
     }
 
+
 }
