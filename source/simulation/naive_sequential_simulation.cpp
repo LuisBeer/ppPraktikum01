@@ -8,7 +8,7 @@
 
 #include <cmath>
 
-void calculate_forces(Universe &universe) {
+void NaiveSequentialSimulation::calculate_forces(Universe &universe) {
     for(int i = 0; i<universe.num_bodies; i++) { //gehe ale Körper durch
         Vector2d<double> f;
 
@@ -23,7 +23,7 @@ void calculate_forces(Universe &universe) {
     }
 }
 
-void calculate_velocities(Universe &universe) {
+void NaiveSequentialSimulation::calculate_velocities(Universe &universe) {
     calculate_forces(universe);
     for(int i = 0; i<universe.num_bodies; i++) {//gehe ale Körper durch
         Vector2d<double> a = calculate_acceleration(universe.forces[i], universe.weights[i]);
@@ -31,7 +31,7 @@ void calculate_velocities(Universe &universe) {
     }
 }
 
-void calculate_positions(Universe &universe) {
+void NaiveSequentialSimulation::calculate_positions(Universe &universe) {
     calculate_velocities(universe);
     for(int i = 0; i<universe.num_bodies; i++) {//gehe ale Körper durch
         Vector2d<double> ds = universe.velocities[i]*epoch_in_seconds;
@@ -39,7 +39,7 @@ void calculate_positions(Universe &universe) {
     }
 }
 
-void simulate_epoch(Plotter& plotter, Universe& universe, bool create_intermediate_plots, std::uint32_t plot_intermediate_epochs){
+void NaiveSequentialSimulation::simulate_epoch(Plotter& plotter, Universe& universe, bool create_intermediate_plots, std::uint32_t plot_intermediate_epochs){
     calculate_positions(universe);
     universe.current_simulation_epoch += 1;
 
@@ -50,7 +50,7 @@ void simulate_epoch(Plotter& plotter, Universe& universe, bool create_intermedia
     }
 }
 
-static void simulate_epochs(Plotter& plotter, Universe& universe, std::uint32_t num_epochs, bool create_intermediate_plots, std::uint32_t plot_intermediate_epochs){
+ void NaiveSequentialSimulation::simulate_epochs(Plotter& plotter, Universe& universe, std::uint32_t num_epochs, bool create_intermediate_plots, std::uint32_t plot_intermediate_epochs){
     // Simuliert die angegebenen Epochen
     for (uint32_t i = 0; i < num_epochs; ++i) {
         simulate_epoch(plotter, universe, create_intermediate_plots, plot_intermediate_epochs);
