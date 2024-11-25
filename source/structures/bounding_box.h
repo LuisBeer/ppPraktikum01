@@ -22,9 +22,16 @@ class BoundingBox{
     void plotting_sanity_check();
     BoundingBox get_scaled(std::uint32_t scaling_factor);
 
-    bool contains(const Vector2d<double>& doublevector) { //bekommt double Vektor und gibt boolean zurück
-        //true wenn beide Komponenten des Vekors in der Boundingbox liegen
-        return doublevector[0] <= x_max && doublevector[0] >= x_min && doublevector[1] <= y_max && doublevector[1] >= y_min;
+    bool contains(const Vector2d<double>& position) const {
+        // Dynamische Bestimmung der effektiven Grenzen
+        double effective_x_min = std::min(x_min, x_max);
+        double effective_x_max = std::max(x_min, x_max);
+        double effective_y_min = std::min(y_min, y_max);
+        double effective_y_max = std::max(y_min, y_max);
+
+        // Überprüfung, ob die Position innerhalb der Grenzen liegt
+        return (position[0] >= effective_x_min && position[0] <= effective_x_max &&
+                position[1] >= effective_y_min && position[1] <= effective_y_max);
     }
 
     BoundingBox get_quadrant (std::uint8_t indexquadrant) { //bekommt den index eines Quadranten als std::uint8_t und gibt den entsprechenden Quadranten als Objekt zurück
