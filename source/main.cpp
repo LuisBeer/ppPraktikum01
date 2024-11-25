@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
 
 	// check if a universe shall be loaded or created
 	auto universe = Universe();
-	/*if(std::filesystem::exists(load_universe_path)){
+	if(std::filesystem::exists(load_universe_path)){
 		// load existing universe
 		load_universe(load_universe_path, universe);
 	}	
@@ -80,7 +80,7 @@ int main(int argc, char** argv) {
 			default:
 				throw std::invalid_argument("Invalid Argument for --universe-generator");
 		}		
-	}*/
+	}
 
 	// create output_path if not already existing
 	if(!std::filesystem::is_directory(output_path)){

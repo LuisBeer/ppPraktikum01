@@ -22,7 +22,7 @@ class BoundingBox{
     void plotting_sanity_check();
     BoundingBox get_scaled(std::uint32_t scaling_factor);
 
-    bool contains (Vector2d<double>& doublevector) { //bekommt double Vektor und gibt boolean zurück
+    bool contains(const Vector2d<double>& doublevector) { //bekommt double Vektor und gibt boolean zurück
         //true wenn beide Komponenten des Vekors in der Boundingbox liegen
         return doublevector[0] <= x_max && doublevector[0] >= x_min && doublevector[1] <= y_max && doublevector[1] >= y_min;
     }
