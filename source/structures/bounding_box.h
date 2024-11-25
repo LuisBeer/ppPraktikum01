@@ -56,7 +56,11 @@ class BoundingBox{
 
 public:
     BoundingBox(); //Standardkonstruktor
-    BoundingBox(double xmingiven, double ymingiven, double xmaxgiven, double ymaxgiven) : x_min(xmingiven), y_min(ymingiven), x_max(xmaxgiven), y_max(ymaxgiven) {}
+    BoundingBox(double xmingiven, double ymingiven, double xmaxgiven, double ymaxgiven) :
+        x_min(std::min(xmingiven,xmaxgiven)),
+        y_min(std::min(ymingiven,ymaxgiven)),
+        x_max(std::min(xmingiven,xmaxgiven)),
+        y_max(std::min(ymingiven,ymaxgiven)) {}
 
 };
 #endif
