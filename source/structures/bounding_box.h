@@ -7,7 +7,6 @@
 
 #include "vector2d.h"
 #include <cstdint>
-#include <iostream>
 
 class BoundingBox{
     //Felder definierencd
@@ -25,14 +24,15 @@ class BoundingBox{
 
     bool contains(const Vector2d<double>& position) const {
         // Überprüfung der X- und Y-Koordinaten
-        bool in_x_range = (x_min <= position[0] && position[0] <= x_max) ||
+        /*bool in_x_range = (x_min <= position[0] && position[0] <= x_max) ||
                           (x_max <= position[0] && position[0] <= x_min);
 
         bool in_y_range = (y_min <= position[1] && position[1] <= y_max) ||
                           (y_max <= position[1] && position[1] <= y_min);
 
         // Position ist innerhalb, wenn beide Bedingungen erfüllt sind
-        return in_x_range && in_y_range;
+        return in_x_range && in_y_range;*/
+        return position[0] >= x_min && position[0] <= x_max && position[1] >= y_min && position[1] <= y_max;
     }
 
     BoundingBox get_quadrant (std::uint8_t indexquadrant) { //bekommt den index eines Quadranten als std::uint8_t und gibt den entsprechenden Quadranten als Objekt zurück
@@ -57,7 +57,7 @@ class BoundingBox{
 
 public:
     BoundingBox(); //Standardkonstruktor
-    BoundingBox(double xmingiven, double ymingiven, double xmaxgiven, double ymaxgiven) :
+    BoundingBox(double xmingiven, double xmaxgiven, double ymingiven, double ymaxgiven) :
         /*x_min(std::min(xmingiven,xmaxgiven)),
         y_min(std::min(ymingiven,ymaxgiven)),
         x_max(std::max(xmingiven,xmaxgiven)),
