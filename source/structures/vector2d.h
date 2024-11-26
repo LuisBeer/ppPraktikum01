@@ -8,6 +8,7 @@
 template <typename T>
 class Vector2d {
 public:
+
     // Standardkonstruktor, initialisiert die Komponenten auf 0
     Vector2d() : x(T{}), y(T{}) {}
 

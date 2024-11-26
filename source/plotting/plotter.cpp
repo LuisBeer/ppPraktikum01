@@ -1,6 +1,7 @@
 #include "plotting/plotter.h"
 #include "io/image_parser.h"
 #include "structures/bounding_box.h"
+#include "iostream"
 
 
 #include <exception>
@@ -23,6 +24,8 @@ BitmapImage::BitmapPixel Plotter::get_pixel(std::uint32_t x, std::uint32_t y){
 }
 
 void Plotter::mark_pixel(std::uint32_t x, std::uint32_t y, std::uint8_t red, std::uint8_t green, std::uint8_t blue){
+    //std::cout << "x_min: " << x << ", y_min: " << y << std::endl;
+    //std::cout << "x_max: " << plot_width << ", y_max: " << plot_height << std::endl;
     if (x >= plot_width || y >= plot_height) {
         throw std::out_of_range("Pixel Koordinaten außerhalb des Bildes!");
     }
@@ -30,19 +33,24 @@ void Plotter::mark_pixel(std::uint32_t x, std::uint32_t y, std::uint8_t red, std
 }
 
 void Plotter::mark_position(Vector2d<double> position, std::uint8_t red, std::uint8_t green, std::uint8_t blue){
-
+    //std::cout << plot_bounding_box.x_min << plot_bounding_box.x_max << plot_bounding_box.y_min << plot_bounding_box.y_max << std::endl;
     if (position[0] < plot_bounding_box.x_min || position[0]> plot_bounding_box.x_max ||
        position[1] < plot_bounding_box.y_min || position[1] > plot_bounding_box.y_max) {
-        throw std::out_of_range("Position außerhalb des Bildes!");
+        return;
     }
+
     //Umrechnung der Position im Universum in Pixelkoordinaten
-    double scale_x = static_cast<double>(plot_width) / (plot_bounding_box.x_max - plot_bounding_box.x_min);
-    double scale_y = static_cast<double>(plot_height) / (plot_bounding_box.y_max - plot_bounding_box.y_min);
+
+    double scale_x = static_cast<double>(plot_width -1) / (plot_bounding_box.x_max - plot_bounding_box.x_min);
+    double scale_y = static_cast<double>(plot_height -1) / (plot_bounding_box.y_max - plot_bounding_box.y_min);
     std::uint32_t x = static_cast<std::uint32_t>((position[0] - plot_bounding_box.x_min) * scale_x);
     std::uint32_t y = static_cast<std::uint32_t>((position[1] - plot_bounding_box.y_min) * scale_y);
+
+    //std::cout << "x_min: " << position[0] << ", y_min: " << position[1] << std::endl;
     // Pixel markieren
     mark_pixel(x, y, red, green, blue);
 }
+
 void Plotter::add_bodies_to_image(Universe& universe){
     for(int i = 0; i < universe.num_bodies; i++){
         Vector2d<double> position = universe.positions[i];
@@ -54,6 +62,7 @@ void Plotter::add_bodies_to_image(Universe& universe){
             double scale_y = static_cast<double>(plot_height) / (plot_bounding_box.y_max - plot_bounding_box.y_min);
             std::uint32_t x = static_cast<std::uint32_t>((position[0] - plot_bounding_box.x_min) * scale_x);
             std::uint32_t y = static_cast<std::uint32_t>((position[1] - plot_bounding_box.y_min) * scale_y);
+
 
             // Pixel markieren
             mark_pixel(x, y, 255, 255, 255);
