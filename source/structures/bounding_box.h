@@ -44,13 +44,13 @@ class BoundingBox{
         double y_middle = (y_min + y_max) / 2;
         switch (indexquadrant) {
             case 0: //Quadrant oben links
-                return BoundingBox(x_min, y_middle, x_middle, y_max);
+                return BoundingBox(x_min, x_middle, y_middle, y_max);
             case 1: //Quadrant oben rechts
-                return BoundingBox(x_middle, y_middle, x_max, y_max);
+                return BoundingBox(x_middle, x_max, y_middle, y_max);
             case 2: //Quadrant unten links
-                return BoundingBox(x_min, y_min, x_middle, y_middle);
+                return BoundingBox(x_min, x_middle, y_min, y_middle);
             case 3: // Quadran unten rechts
-                return BoundingBox(x_middle, y_min, x_max, y_middle);
+                return BoundingBox(x_middle, x_max, x_min, y_middle);
             default:  throw std::logic_error("Unexpected quadrant index");
         }
     }
